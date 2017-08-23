@@ -44,6 +44,8 @@ if (len(sys.argv) == 2):
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
+            
+            #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
 
             if(OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
@@ -62,7 +64,9 @@ if (len(sys.argv) == 2):
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
-
+                
+            #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
+            
             if(OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
@@ -95,6 +99,9 @@ if (len(sys.argv) == 2):
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
 
+                
+            #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
+            
             if(OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
@@ -124,6 +131,7 @@ if (len(sys.argv) == 1):
         p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
         p2.stdout.close()
 
+    #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
     if (OS == "mac"):
         cmd = 'echo %s | pbcopy' % uploaded_image.link
         os.system(cmd)
