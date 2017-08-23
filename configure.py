@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 import importlib
 from subprocess import call
+from importlib import util
+
+
+spam_spec = importlib.util.find_spec("pip")
+pip_found = spam_spec is not None
+
+if(pip_found == False):
+    print("Please install pip first!")
+    exit()
 
 spam_spec = importlib.util.find_spec("pyimgur")
 pyimgur_found = spam_spec is not None
