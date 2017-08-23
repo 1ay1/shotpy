@@ -31,7 +31,7 @@ if (len(sys.argv) == 2):
         porn = '/' in sys.argv[1] # path arg or not
         torn = "-" in sys.argv[1] # time delay or not
         dorn = '.' in sys.argv[1] # dot in name or not
-        corn = "-c" in
+        corn = "-c" in sys.argv[1] # compression percentage in the arg or not
 
         if ((porn == False) and (dorn == True)):
             PATH = './' + sys.argv[1]
