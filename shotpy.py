@@ -9,6 +9,7 @@ from pathlib import Path
 
 CLIENT_ID = "6db1a5668074579"
 HOME = str(Path.home())
+
 OS = sys.platform
 if ('linux' in OS):
     OS = "linux"
@@ -18,6 +19,10 @@ if ('darwin' in OS):
 
 if ('win' in OS):
     OS = "windows"
+
+if(OS == 'mac'):
+    import pync
+    from pync import Notifier
 
 if (len(sys.argv) > 2):
     print("Usage: shotpy <filename>/<path to file>")
@@ -37,13 +42,17 @@ if (len(sys.argv) == 2):
             PATH = './' + sys.argv[1]
             im = pyimgur.Imgur(CLIENT_ID)
             uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
-            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+            if (OS == 'linux'):
+                s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
 
             if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
+
+            if(OS == 'mac'):
+                Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
 
             # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
 
@@ -57,7 +66,12 @@ if (len(sys.argv) == 2):
             PATH = sys.argv[1]
             im = pyimgur.Imgur(CLIENT_ID)
             uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
-            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+            if(OS == 'linux'):
+                s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+
+            if (OS == 'mac'):
+                Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
+
             if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
@@ -94,7 +108,12 @@ if (len(sys.argv) == 2):
 
             uploaded_image = im.upload_image(imdir + '/' + imname, title="Uploaded with shotpy :)")
 
-            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+            if(OS == 'linux'):
+                s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+
+            if (OS == 'mac'):
+                Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
+
             webbrowser.open_new_tab(uploaded_image.link)
             if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
@@ -123,7 +142,12 @@ if (len(sys.argv) == 1):
 
     uploaded_image = im.upload_image(imdir + '/' + imname, title="Uploaded with shotpy :)")
 
-    s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+    if(OS == 'linux'):
+        s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+
+    if (OS == 'mac'):
+        Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
+        
     webbrowser.open_new_tab(uploaded_image.link)
     if (OS == "linux"):
         p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
