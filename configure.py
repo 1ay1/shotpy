@@ -6,6 +6,7 @@ spam_spec = importlib.util.find_spec("pyimgur")
 pyimgur_found = spam_spec is not None
 
 if (pyimgur_found == False):
+    print("'pyimgur' was not installed, Installing now!")
     call(["sudo", "pip", "install", "pyimgur"])
     print("-> 'pyimgur' is installed.")
 if (pyimgur_found == True):
@@ -15,6 +16,7 @@ spam_spec = importlib.util.find_spec("subprocess")
 subprocess_found = spam_spec is not None
 
 if (subprocess_found == False):
+    print("'subprocess' was not installed, Installing now!")
     call(["sudo", "pip", "install", "subprocess"])
     print("-> 'subprocess' is installed")
 if (subprocess_found == True):
@@ -24,6 +26,7 @@ spam_spec = importlib.util.find_spec("pyperclip")
 pyperclip_found = spam_spec is not None
 
 if (pyperclip_found == False):
+    print("'pyperclip' was not installed, Installing now!")
     call(["sudo", "pip", "install", "pyperclip"])
     print("-> 'pyperclip' is installed")
 if (pyperclip_found == True):
