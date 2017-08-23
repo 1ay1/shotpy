@@ -37,11 +37,19 @@ if (len(sys.argv) == 2):
             im = pyimgur.Imgur(CLIENT_ID)
             uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
             s.call(['notify-send','1 Picture Uploaded Successfully :)',uploaded_image.link])
+
+
             if(OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
+
+            if(OS == "mac"):
+                cmd = 'echo %s | pbcopy' % uploaded_image.link
+                os.system(cmd)
+
+
             webbrowser.open_new_tab(uploaded_image.link)
 
         if ((porn == True) and (dorn == True)):
@@ -54,6 +62,12 @@ if (len(sys.argv) == 2):
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
+
+            if(OS == "mac"):
+                cmd = 'echo %s | pbcopy' % uploaded_image.link
+                os.system(cmd)
+
+
             webbrowser.open_new_tab(uploaded_image.link)
 
         countdt = sys.argv[1]
@@ -81,6 +95,10 @@ if (len(sys.argv) == 2):
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
 
+            if(OS == "mac"):
+                cmd = 'echo %s | pbcopy' % uploaded_image.link
+                os.system(cmd)
+
 
 
 if (len(sys.argv) == 1):
@@ -105,3 +123,7 @@ if (len(sys.argv) == 1):
         p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
         p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
         p2.stdout.close()
+
+    if (OS == "mac"):
+        cmd = 'echo %s | pbcopy' % uploaded_image.link
+        os.system(cmd)
