@@ -1,19 +1,33 @@
+#!/usr/bin/env python
 import pyimgur
 import sys
 import subprocess as s
+import pyperclip
+import webbrowser
 
-# import importlib
-# try:
-#    importlib.find_module('pyimgur')
-#    found = True
-# except ImportError:
-#    found = False
+CLIENT_ID = "6db1a5668074579"
 
-# print(found)
+if(len(sys.argv) > 2):
+    print("Usage: shotpy <filename>/<path to file>")
+    print("Or: just shotpy, if you want to upload a screensot.")
 
-import importlib
+if(len(sys.argv) == 2):
+    if(len(sys.argv) == 2):
+        argv1 = sys.argv[1]
+        porn = '/' in sys.argv[1]
+        if(porn == False):
+            PATH = './' + sys.argv[1]
+            im = pyimgur.Imgur(CLIENT_ID)
+            uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
+            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+            pyperclip.copy(uploaded_image.link)
+            webbrowser.open_new_tab(uploaded_image.link)
 
-spam_spec = importlib.util.find_spec("")
-found = spam_spec is not None
+        if (porn == True):
+            PATH = sys.argv[1]
+            im = pyimgur.Imgur(CLIENT_ID)
+            uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
+            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+            pyperclip.copy(uploaded_image.link)
+            webbrowser.open_new_tab(uploaded_image.link)
 
-print(found)
