@@ -22,15 +22,16 @@ if ( 'win' in OS):
 if (len(sys.argv) > 2):
     print("Usage: shotpy <filename>/<path to file>")
     print("Or: just shotpy, if you want to upload a screensot.")
-    print("Or just shotpy --$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
+    print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
     print("Visit https://github.com/AyushBhat/shotpy for more info.")
 
 if (len(sys.argv) == 2):
     if (len(sys.argv) == 2):
         argv1 = sys.argv[1]
-        porn = '/' in sys.argv[1]
-        torn = "--" in sys.argv[1]
-        dorn = '.' in sys.argv[1]
+        porn = '/' in sys.argv[1] # path arg or not
+        torn = "-" in sys.argv[1] # time delay or not
+        dorn = '.' in sys.argv[1] # dot in name or not
+        corn = "-c" in
 
         if ((porn == False) and (dorn == True)):
             PATH = './' + sys.argv[1]
@@ -70,8 +71,14 @@ if (len(sys.argv) == 2):
 
             webbrowser.open_new_tab(uploaded_image.link)
 
+
+        # countdt will be the full time delay arg, with -
         countdt = sys.argv[1]
-        countd = countdt[2:]
+
+        # this will fuck up the - in countdt
+
+        countd = countdt[1:]
+
         if ((torn == True) and (dorn == False)):
             shotpydir = HOME + "/Pictures/shotpy/"
             if not os.path.exists(shotpydir):
