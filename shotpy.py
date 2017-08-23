@@ -10,13 +10,13 @@ from pathlib import Path
 CLIENT_ID = "6db1a5668074579"
 HOME = str(Path.home())
 OS = sys.platform
-if( 'linux' in OS):
+if ('linux' in OS):
     OS = "linux"
 
-if( 'darwin' in OS):
+if ('darwin' in OS):
     OS = "mac"
 
-if ( 'win' in OS):
+if ('win' in OS):
     OS = "windows"
 
 if (len(sys.argv) > 2):
@@ -28,30 +28,28 @@ if (len(sys.argv) > 2):
 if (len(sys.argv) == 2):
     if (len(sys.argv) == 2):
         argv1 = sys.argv[1]
-        porn = '/' in sys.argv[1] # path arg or not
-        torn = "-" in sys.argv[1] # time delay or not
-        dorn = '.' in sys.argv[1] # dot in name or not
-        corn = "-c" in sys.argv[1] # compression percentage in the arg or not
+        porn = '/' in sys.argv[1]  # path arg or not
+        torn = "-" in sys.argv[1]  # time delay or not
+        dorn = '.' in sys.argv[1]  # dot in name or not
+        corn = "-c" in sys.argv[1]  # compression percentage in the arg or not
 
         if ((porn == False) and (dorn == True)):
             PATH = './' + sys.argv[1]
             im = pyimgur.Imgur(CLIENT_ID)
             uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
-            s.call(['notify-send','1 Picture Uploaded Successfully :)',uploaded_image.link])
+            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
 
-
-            if(OS == "linux"):
+            if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
-            
-            #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
 
-            if(OS == "mac"):
+            # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
+
+            if (OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
-
 
             webbrowser.open_new_tab(uploaded_image.link)
 
@@ -60,21 +58,19 @@ if (len(sys.argv) == 2):
             im = pyimgur.Imgur(CLIENT_ID)
             uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
             s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
-            if(OS == "linux"):
+            if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
-                
-            #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
-            
-            if(OS == "mac"):
+
+            # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
+
+            if (OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
 
-
             webbrowser.open_new_tab(uploaded_image.link)
-
 
         # countdt will be the full time delay arg, with -
         countdt = sys.argv[1]
@@ -98,22 +94,19 @@ if (len(sys.argv) == 2):
 
             uploaded_image = im.upload_image(imdir + '/' + imname, title="Uploaded with shotpy :)")
 
-            s.call(['notify-send','1 Picture Uploaded Successfully :)',uploaded_image.link])
+            s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
             webbrowser.open_new_tab(uploaded_image.link)
-            if(OS == "linux"):
+            if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
                 p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
                 p2.stdout.close()
 
-                
-            #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
-            
-            if(OS == "mac"):
+            # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
+
+            if (OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
-
-
 
 if (len(sys.argv) == 1):
     shotpydir = HOME + "/Pictures/shotpy/"
@@ -122,7 +115,7 @@ if (len(sys.argv) == 1):
     now = datetime.datetime.now()
     imname_t = now.strftime("%I:%M%p-%B-%d-%Y")
     imname = imname_t + "_shotpy.png"
-    s.call(['scrot','-s', '-e', 'mv $f ' + HOME + '/Pictures/shotpy/' + imname])
+    s.call(['scrot', '-s', '-e', 'mv $f ' + HOME + '/Pictures/shotpy/' + imname])
 
     imdir = HOME + '/Pictures/shotpy/'
 
@@ -138,7 +131,7 @@ if (len(sys.argv) == 1):
         p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
         p2.stdout.close()
 
-    #START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
+    # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
     if (OS == "mac"):
         cmd = 'echo %s | pbcopy' % uploaded_image.link
         os.system(cmd)
