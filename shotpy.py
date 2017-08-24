@@ -142,7 +142,7 @@ if (len(sys.argv) == 2):
             uploaded_image = im.upload_image(imdir + '/' + imname, title="Uploaded with shotpy :)")
 
             if (OS == 'linux'):
-                s.call(['notify-send', '1 Picture Uploaded Successfully :)', uploaded_image.link])
+                notify_send(uploaded_image.link, 'n')
 
             if (OS == 'mac'):
                 Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
