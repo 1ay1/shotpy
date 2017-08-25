@@ -112,10 +112,10 @@ if (len(sys.argv) == 2):
         # countdt will be the full time delay arg, with -
         countdt = sys.argv[1]
 
-        # this will fuck up the - in countdt
-
         # if the image is screenshot and has to be uploaded using a count down timer obviously this will have no dot
-
+        
+        # this will fuck up the - in countdt
+        
         countd = countdt[1:]
 
         if ((torn == True) and (dorn == False)):
