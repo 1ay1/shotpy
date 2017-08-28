@@ -5,6 +5,7 @@ A simple python script to upload images/screenshots to imgur for sharing.
 
 # Modules required:
 * Linux:
+    * `python >= 3.6.2`
     * `pyimgur` 
     * `scrot` (this is not a python module, a screenshot utility written in c.)
     * `notify-send` (for notifications) <br> <br>
