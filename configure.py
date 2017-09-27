@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import importlib
 from subprocess import run, PIPE, call
 from importlib import util
