@@ -2,7 +2,7 @@
 import pyimgur
 import sys
 import subprocess as s
-import webbrowser
+#import webbrowser
 import datetime
 import os
 from pathlib import Path
@@ -50,17 +50,17 @@ if (len(sys.argv) > 2):
     print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
     print("Visit https://github.com/AyushBhat/shotpy for more info.")
 
-if(sys.argv[1] == '-h' or sys.argv[1] == '--help'):
-    print("Usage: shotpy <filename>/<path to file>")
-    print("Or: just shotpy, if you want to upload a screensot.")
-    print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
-    print("Visit https://github.com/AyushBhat/shotpy for more info.")
-
 
 # if the shotpy has two arguments:
 
 
 if (len(sys.argv) == 2):
+    if (sys.argv[1] == '-h' or sys.argv[1] == '--help'):
+        print("Usage: shotpy <filename>/<path to file>")
+        print("Or: just shotpy, if you want to upload a screensot.")
+        print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
+        print("Visit https://github.com/AyushBhat/shotpy for more info.")
+
     if (len(sys.argv) == 2):
         argv1 = sys.argv[1]
         porn = '/' in sys.argv[1]  # path arg or not
@@ -88,8 +88,10 @@ if (len(sys.argv) == 2):
             if (OS == "mac"):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
+            if (OS == "linux"):
+                p1 = s.Popen(["xdg-open", uploaded_image.link])
 
-            webbrowser.open_new_tab(uploaded_image.link)
+            #webbrowser.open_new_tab(uploaded_image.link)
 
         # if the first argument is a path name of course with a dot:
 
@@ -115,7 +117,10 @@ if (len(sys.argv) == 2):
                 cmd = 'echo %s | pbcopy' % uploaded_image.link
                 os.system(cmd)
 
-            webbrowser.open_new_tab(uploaded_image.link)
+            if (OS == "linux"):
+                p1 = s.Popen(["xdg-open", uploaded_image.link])
+
+            #webbrowser.open_new_tab(uploaded_image.link)
 
         # countdt will be the full time delay arg, with -
         countdt = sys.argv[1]
@@ -155,7 +160,10 @@ if (len(sys.argv) == 2):
             if (OS == 'mac'):
                 Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
 
-            webbrowser.open_new_tab(uploaded_image.link)
+            if (OS == "linux"):
+                p1 = s.Popen(["xdg-open", uploaded_image.link])
+
+            #webbrowser.open_new_tab(uploaded_image.link)
             if (OS == "linux"):
                 p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
                 p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
@@ -199,7 +207,10 @@ if (len(sys.argv) == 1):
     if (OS == 'mac'):
         Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
 
-    webbrowser.open_new_tab(uploaded_image.link)
+    if (OS == "linux"):
+        p1 = s.Popen(["xdg-open", uploaded_image.link])
+
+    #webbrowser.open_new_tab(uploaded_image.link)
     if (OS == "linux"):
         p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
         p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
