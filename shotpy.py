@@ -50,7 +50,15 @@ if (len(sys.argv) > 2):
     print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
     print("Visit https://github.com/AyushBhat/shotpy for more info.")
 
+if(sys.argv[1] == '-h' or sys.argv[1] == '--help'):
+    print("Usage: shotpy <filename>/<path to file>")
+    print("Or: just shotpy, if you want to upload a screensot.")
+    print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
+    print("Visit https://github.com/AyushBhat/shotpy for more info.")
+
+
 # if the shotpy has two arguments:
+
 
 if (len(sys.argv) == 2):
     if (len(sys.argv) == 2):
