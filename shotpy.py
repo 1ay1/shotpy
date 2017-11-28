@@ -60,6 +60,7 @@ if (len(sys.argv) == 2):
         print("Or: just shotpy, if you want to upload a screensot.")
         print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
         print("Visit https://github.com/AyushBhat/shotpy for more info.")
+        exit()
 
     if (len(sys.argv) == 2):
         argv1 = sys.argv[1]
