@@ -24,6 +24,13 @@ if (OS == 'mac'):
     import pync
     from pync import Notifier
 
+#print help msg function
+def blah():
+    print("Usage: shotpy <filename>/<path to file>")
+    print("Or: just shotpy, if you want to upload a screensot.")
+    print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
+    print("Visit https://github.com/AyushBhat/shotpy for more info.")
+    exit()
 
 # notification function for linux using nofity-send
 # feed type 'n' if the notification is normal and 'c' if its critical
@@ -65,9 +72,13 @@ if (len(sys.argv) == 2):
     if (len(sys.argv) == 2):
         argv1 = sys.argv[1]
         porn = '/' in sys.argv[1]  # path arg or not
-        torn = "-" in sys.argv[1]  # time delay or not
+        torn = "-" in argv1[:1]  # time delay or not
         dorn = '.' in sys.argv[1]  # dot in name or not
         corn = "-c" in sys.argv[1]  # compression percentage in the arg or not
+
+        if(porn == False and torn == False and dorn == False):
+            blah()
+
 
         ## if the first arg is not path, its just an image name with a dot:
 
