@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pyimgur
+import imghdr
 import sys
 import subprocess as s
 #import webbrowser
@@ -24,10 +25,12 @@ if (OS == 'mac'):
     import pync
     from pync import Notifier
 
+#global image title
+global_title = "Uploaded with shotpy :)"
 #print help msg function
 def blah():
-    print("Usage: shotpy <filename>/<path to file>")
-    print("Or: just shotpy, if you want to upload a screensot.")
+    print("Usage: shotpy <filename>/<path to file> <OPTIONAL:Upload Image title>")
+    print("Or: just shotpy, if you want to upload a screenshot.")
     print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
     print("Visit https://github.com/AyushBhat/shotpy for more info.")
     exit()
@@ -51,41 +54,67 @@ def send_text_to_clip(string):
     p2.stdout.close()
 
 
-if (len(sys.argv) > 2):
-    print("Usage: shotpy <filename>/<path to file>")
-    print("Or: just shotpy, if you want to upload a screensot.")
-    print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
-    print("Visit https://github.com/AyushBhat/shotpy for more info.")
+if (len(sys.argv) > 3):
+    blah()
+
+if (len(sys.argv) == 3):
+    argv1 = sys.argv[1]
+    porn = '/' in sys.argv[1]  # path arg or not
+    torn = "-" in argv1[:1]  # time delay or not
+    dorn = '.' in sys.argv[1]  # dot in name or not
+    aorn = os.path.isfile(sys.argv[1])  # name is ANY file or not
+    if (aorn == False):  ##check if the file is image only if file exists
+        print("File doesn't exist!!")
+        exit()
+    legaliorn = imghdr.what(sys.argv[1])  # if the filed named is really an image or not
+    corn = "-c" in sys.argv[1]  # compression percentage in the arg or not
+
+    if (porn == False and torn == False and aorn == False):
+        blah()
+
+    if(aorn == True and legaliorn == None):
+        print("The file is not an image!")
+        exit()
+
+    if(porn == True or torn == True or legaliorn != None):
+        global_title = sys.argv[2]
 
 
 # if the shotpy has two arguments:
-
-
 if (len(sys.argv) == 2):
     if (sys.argv[1] == '-h' or sys.argv[1] == '--help'):
-        print("Usage: shotpy <filename>/<path to file>")
-        print("Or: just shotpy, if you want to upload a screensot.")
-        print("Or just shotpy -$SEC, where $SEC is number of seconds you want delay shotpy taking screenshot")
-        print("Visit https://github.com/AyushBhat/shotpy for more info.")
-        exit()
+        blah()
 
-    if (len(sys.argv) == 2):
+if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
+
+    if ((len(sys.argv) == 2) or (len(sys.argv) == 3)):
         argv1 = sys.argv[1]
         porn = '/' in sys.argv[1]  # path arg or not
         torn = "-" in argv1[:1]  # time delay or not
         dorn = '.' in sys.argv[1]  # dot in name or not
+        aorn = os.path.isfile(sys.argv[1])  # name is ANY file or not
+        if (aorn == False):  ##check if the file is image only if file exists
+            print("File doesn't exist!!")
+            exit()
+        legaliorn = imghdr.what(sys.argv[1])  # if the filed named is really an image or not
         corn = "-c" in sys.argv[1]  # compression percentage in the arg or not
 
-        if(porn == False and torn == False and dorn == False):
+
+        if(porn == False and torn == False and aorn == False):
             blah()
+
+
+        if (aorn == True and legaliorn == None):
+            print("The file is not an image!")
+            exit()
 
 
         ## if the first arg is not path, its just an image name with a dot:
 
-        if ((porn == False) and (dorn == True)):
+        if (porn == False and legaliorn != None):
             PATH = './' + sys.argv[1]
             im = pyimgur.Imgur(CLIENT_ID)
-            uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
+            uploaded_image = im.upload_image(PATH, title=global_title)
             if (OS == 'linux'):
                 notify_send(uploaded_image.link, 'n')
 
@@ -107,10 +136,10 @@ if (len(sys.argv) == 2):
 
         # if the first argument is a path name of course with a dot:
 
-        if ((porn == True) and (dorn == True)):
+        if ((porn == True) and (legaliorn != None)):
             PATH = sys.argv[1]
             im = pyimgur.Imgur(CLIENT_ID)
-            uploaded_image = im.upload_image(PATH, title="Uploaded with shotpy :)")
+            uploaded_image = im.upload_image(PATH, title=global_title)
             if (OS == 'linux'):
                 notify_send(uploaded_image.link, 'n')
 
@@ -164,7 +193,7 @@ if (len(sys.argv) == 2):
 
             im = pyimgur.Imgur(CLIENT_ID)
 
-            uploaded_image = im.upload_image(imdir + '/' + imname, title="Uploaded with shotpy :)")
+            uploaded_image = im.upload_image(imdir + '/' + imname, title=global_title)
 
             if (OS == 'linux'):
                 notify_send(uploaded_image.link, 'n')
@@ -211,7 +240,7 @@ if (len(sys.argv) == 1):
 
     im = pyimgur.Imgur(CLIENT_ID)
 
-    uploaded_image = im.upload_image(imdir + '/' + imname, title="Uploaded with shotpy :)")
+    uploaded_image = im.upload_image(imdir + '/' + imname, title=global_title)
 
     if (OS == 'linux'):
         notify_send(uploaded_image.link, 'n')
