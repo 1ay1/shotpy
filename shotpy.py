@@ -12,7 +12,7 @@ CLIENT_ID = "6db1a5668074579"
 HOME = str(Path.home())
 
 OS = sys.platform
-if ('linux' in OS):
+if (('linux' in OS) or ('bsd' in os)):
     OS = "linux"
 
 if ('darwin' in OS):
