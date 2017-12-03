@@ -67,7 +67,7 @@ if (pyimgur_found == False):
         print("Installation failed.")
         print("You have to run it script with 'sudo' to make it install the modules")
         exit()
-    call(["sudo", "pip", "install", "pyimgur"])
+    call(["sudo", "pip3", "install", "pyimgur"])
     print("-> 'pyimgur' is installed.")
 if (pyimgur_found == True):
     print("-> 'pyimgur' is already installed.")
@@ -81,7 +81,7 @@ if (subprocess_found == False):
         print("Installation failed.")
         print("You have to run it script with 'sudo' to make it install the modules")
         exit()
-    call(["sudo", "pip", "install", "subprocess"])
+    call(["sudo", "pip3", "install", "subprocess"])
     print("-> 'subprocess' is installed")
 if (subprocess_found == True):
     print("-> 'subprocess' is already installed.")
@@ -95,7 +95,7 @@ if (pyperclip_found == False):
         print("Installation failed.")
         print("You have to run it script with 'sudo' to make it install the modules")
         exit()
-    call(["sudo", "pip", "install", "pyperclip"])
+    call(["sudo", "pip3", "install", "pyperclip"])
     print("-> 'pyperclip' is installed")
 if (pyperclip_found == True):
     print("-> 'pyperclip' is already installed.")
