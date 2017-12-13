@@ -58,6 +58,9 @@ pip_found = spam_spec is not None
 if (pip_found == False):
     print("Please install pip first!")
 
+if(pip_found == True):
+    print("Pip is installed!")
+
 spam_spec = importlib.util.find_spec("pyimgur")
 pyimgur_found = spam_spec is not None
 
