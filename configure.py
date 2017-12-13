@@ -26,7 +26,7 @@ def isitin_sys_linux(string):
 
 ## this will check which platform ( os ) shotpy is running on
 OS = sys.platform
-if ('linux' in OS):
+if ('linux' or 'bsd' in OS):
     OS = "linux"
 
 if ('darwin' in OS):
