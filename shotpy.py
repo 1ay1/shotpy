@@ -108,7 +108,7 @@ if (len(sys.argv) > 3):
 if (len(sys.argv) == 3):
     argv1 = sys.argv[1]
     porn = '/' in sys.argv[1]  # path arg or not
-    torn = "-d" == argv1  # time delay or not
+    torn = "-d" == argv1 or "-D" == argv1  # time delay or not
     dorn = '.' in sys.argv[1]  # dot in name or not
     aorn = os.path.isfile(sys.argv[1])  # name is ANY file or not
 
@@ -147,7 +147,7 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
     if ((len(sys.argv) == 2) or (len(sys.argv) == 3)):
         argv1 = sys.argv[1]
         porn = '/' in sys.argv[1]  # path arg or not
-        torn = "-d" == argv1  # time delay or not
+        torn = "-d" == argv1 or "-D" == argv1 # time delay or not
         dorn = '.' in sys.argv[1]  # dot in name or not
         aorn = os.path.isfile(sys.argv[1])  # name is ANY file or not
 
