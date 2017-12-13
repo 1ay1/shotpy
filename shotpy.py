@@ -122,6 +122,9 @@ if (len(sys.argv) == 3):
 
     corn = "-c" in sys.argv[1]  # compression percentage in the arg or not
 
+    if(not sys.argv[2].isdigit()):
+        print("Time should be in numbers! Type 'shotpy -h' for help.")
+        exit()
 
     if (porn == False and torn == False and aorn == False):
         blah()
