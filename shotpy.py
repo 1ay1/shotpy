@@ -1,16 +1,8 @@
 #!/usr/bin/env python3
-import pyimgur
-import imghdr
-import sys
-import subprocess as s
-import platform
-from importlib import util
-#import webbrowser
-import datetime
-import os
-from pathlib import Path
-
 ########A bit of a configuration for first run ######################
+import importlib
+from importlib import util
+
 spam_spec = importlib.util.find_spec("pip")
 pip_found = spam_spec is not None
 
@@ -27,6 +19,15 @@ if (pyimgur_found == False):
     print("pyimgur module not found!")
     print("Please run 'pip3 install pyimgur' to install pyimgur!")
 ##########################################################################
+
+import pyimgur
+import imghdr
+import sys
+import subprocess as s
+#import webbrowser
+import datetime
+import os
+from pathlib import Path
 
 CLIENT_ID = "6db1a5668074579"
 HOME = str(Path.home())
