@@ -27,7 +27,7 @@ if (pyimgur_found == False):
     if (os.getuid() != 0):
         print("Please run this script one time as root, to install pyimgur.\nOR run 'pip3 install pyimgur' to install manually.")
         exit(0)
-    call(["sudo", "pip3", "install", "pyimgur"])
+    call(["pip3", "install", "pyimgur"])
     print("-> 'pyimgur' is installed.")
     print("Run shotpy again as 'non-root' to take screenshot ")
     exit(0)
