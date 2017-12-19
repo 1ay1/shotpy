@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
-########A bit of a configuration for first run ######################
+import imghdr
+import sys
+import subprocess as s
+from subprocess import run, PIPE, call
+#import webbrowser
+import datetime
+from pathlib import Path
 import importlib
 from importlib import util
+import os
+
+########A bit of a configuration for first run ######################
 
 spam_spec = importlib.util.find_spec("pip")
 pip_found = spam_spec is not None
@@ -15,19 +24,16 @@ pyimgur_found = spam_spec is not None
 
 if (pyimgur_found == False):
     print("pyimgur module not found!")
-    print("Please run 'pip3 install pyimgur' to install pyimgur!")
+    if (os.getuid() != 0):
+        print("Please run this script one time as root, to install pyimgur.\nOR run 'pip3 install pyimgur' to install manually.")
+        exit(0)
+    call(["sudo", "pip3", "install", "pyimgur"])
+    print("-> 'pyimgur' is installed.")
+    print("Run shotpy again as 'non-root' to take screenshot ")
     exit(0)
-
 ##########################################################################
 
 import pyimgur
-import imghdr
-import sys
-import subprocess as s
-#import webbrowser
-import datetime
-import os
-from pathlib import Path
 
 CLIENT_ID = "6db1a5668074579"
 HOME = str(Path.home())
