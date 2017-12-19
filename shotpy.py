@@ -30,7 +30,7 @@ if (pyimgur_found == False):
     print("Installing now!")
     call(["pip3", "install", "pyimgur"])
     print("-> 'pyimgur' is installed.")
-    print("Run shotpy again as 'non-root' to take screenshot ")
+    print("Run shotpy again as 'non-root' to upload pictures or to take screenshot.")
     exit(0)
 ##########################################################################
 
