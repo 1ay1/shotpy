@@ -4,7 +4,7 @@ A simple python script to upload images/screenshots to imgur for sharing.
 ![Alt Text](https://github.com/AyushBhat/shotpy/raw/master/demo.gif)
 
 # Modules required:
-* Linux:
+* Linux/BSD:
     * `python >= 3.6.2`
     * `pyimgur` 
     * `scrot` (this is not a python module, a screenshot utility written in c.)
@@ -19,3 +19,6 @@ Install `pyimgur` by using `pip` or just run `configure.py` after cloning the re
 * If you want to upload an image thats already in your drive to imgur just run `shotpy <path-to-image>` or `shotpy <path-to-image> <imgur-title-for-image>`
 
 The URL of the uploaded image will be copied to the clipboard so that you can paste it anywere.
+
+# To Do:
+* Adding functionality for Mac.
