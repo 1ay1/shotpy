@@ -2,7 +2,6 @@
 import imghdr
 import sys
 import subprocess as s
-from subprocess import run, PIPE, call
 #import webbrowser
 import datetime
 from pathlib import Path
@@ -28,7 +27,7 @@ if (pyimgur_found == False):
         print("Please run this script one time as root, to install pyimgur.\nOR run 'pip3 install pyimgur' to install manually.")
         exit(0)
     print("Installing now!")
-    call(["pip3", "install", "pyimgur"])
+    s.call(["pip3", "install", "pyimgur"])
     print("-> 'pyimgur' is installed.")
     print("Run shotpy again as 'non-root' to upload pictures or to take screenshot.")
     exit(0)
@@ -40,7 +39,7 @@ CLIENT_ID = "6db1a5668074579"
 HOME = str(Path.home())
 
 OS = sys.platform
-if (('linux' in OS) or ('bsd' in OS)):
+if (('linux' in OS) or ('bsd' in OS) or ('gnu' in OS)):
     OS = "linux"
 
 if ('darwin' in OS):
@@ -108,6 +107,7 @@ if (len(sys.argv) == 1):
 
     if (OS == 'linux'):
         print("1 Picture Uploaded Successfully :)")
+        print(uploaded_image.link)
         notify_send(uploaded_image.link, 'n')
 
     if (OS == 'mac'):
@@ -213,6 +213,7 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
             uploaded_image = im.upload_image(PATH, title=global_title)
             if (OS == 'linux'):
                 print("1 Picture Uploaded Successfully :)")
+                print(uploaded_image.link)
                 notify_send(uploaded_image.link, 'n')
 
             if (OS == "linux"):
@@ -239,6 +240,7 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
             uploaded_image = im.upload_image(PATH, title=global_title)
             if (OS == 'linux'):
                 print("1 Picture Uploaded Successfully :)")
+                print(uploaded_image.link)
                 notify_send(uploaded_image.link, 'n')
 
             if (OS == 'mac'):
@@ -292,6 +294,7 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
 
             if (OS == 'linux'):
                 print("1 Picture Uploaded Successfully :)")
+                print(uploaded_image.link)
                 notify_send(uploaded_image.link, 'n')
 
             if (OS == 'mac'):
