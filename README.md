@@ -18,7 +18,7 @@ Install `pyimgur` by using `pip` or just run `configure.py` after cloning the re
 * For making shotpy wait for `SEC` number of seconds to capture the selected area, run `shotpy -d <SEC>`
 * If you want to upload an image thats already in your drive to imgur just run `shotpy <path-to-image>` or `shotpy <path-to-image> <imgur-title-for-image>`
 
-The URL of the uploaded image will be copied to the clipboard so that you can paste it anywere.
+The URL of the uploaded image will be copied to the clipboard so that you can paste it anywhere.
 
 # To Do:
 * Adding functionality for Mac.
