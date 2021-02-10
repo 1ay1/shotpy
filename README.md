@@ -1,5 +1,5 @@
 # shotpy
-A simple python script to upload images/screenshots to imgur for sharing.
+A simple python script to take screenshot and upload images/screenshots to imgur for sharing.
 <br>
 ![Alt Text](https://github.com/AyushBhat/shotpy/raw/master/demo.gif)
 
