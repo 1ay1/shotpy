@@ -75,10 +75,7 @@ def notify_send(string, type):
 # sending text to clipboad using subprocess.Popen(), will surely work in linux
 
 def send_text_to_clip(string):
-    p1 = s.Popen(["echo", string], stdout=s.PIPE)
-    p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
-    p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
-    p2.stdout.close()
+    p2 = s.Popen(["xclip", "-se", "c", "-t", "image/png", "-i", string])
 
 # if shotpy has no argument except its name :
 
@@ -93,6 +90,9 @@ if (len(sys.argv) == 1):
     s.call(['scrot', '-s', '-e', 'mv $f ' + HOME + '/Pictures/shotpy/' + imname])
 
     imdir = HOME + '/Pictures/shotpy/'
+
+    if (OS == "linux"):
+        send_text_to_clip(imdir + "/" + imname)
 
     if(OS == 'linux'):
         if not os.path.isfile(full_imname):
@@ -118,10 +118,7 @@ if (len(sys.argv) == 1):
 
     #webbrowser.open_new_tab(uploaded_image.link)
     if (OS == "linux"):
-        p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
-        p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
-        p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
-        p2.stdout.close()
+        send_text_to_clip(imdir + "/" + imname)
 
     # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
     if (OS == "mac"):
@@ -205,6 +202,7 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
             exit()
 
 
+
         ## if the first arg is not path, its just an image name with a dot:
 
         if (aorn == True and porn == False and legaliorn != None):
@@ -247,10 +245,8 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
                 Notifier.notify('1 Picture Uploaded Successfully :)' + uploaded_image.link, title='shotpy')
 
             if (OS == "linux"):
-                p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
-                p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
-                p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
-                p2.stdout.close()
+               send_text_to_clip('./' + sys.argv[1])
+
 
             # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
 
@@ -280,6 +276,10 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
             s.call(['scrot', '-d', countdt, '-s', '-e', 'mv $f ' + HOME + '/Pictures/shotpy/' + imname])
 
             imdir = HOME + '/Pictures/shotpy/'
+            #webbrowser.open_new_tab(uploaded_image.link)
+            if (OS == "linux"):
+                send_text_to_clip(imdir + "/" + imname)
+
 
             if (OS == 'linux'):
                 if not os.path.isfile(full_imname):
@@ -305,10 +305,8 @@ if  (len(sys.argv) == 2 or (len(sys.argv) == 3)):
 
             #webbrowser.open_new_tab(uploaded_image.link)
             if (OS == "linux"):
-                p1 = s.Popen(["echo", uploaded_image.link], stdout=s.PIPE)
-                p2 = s.Popen(["xclip", "-selection", "clipboard"], stdin=p1.stdout, stdout=s.PIPE)
-                p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
-                p2.stdout.close()
+                send_text_to_clip(shotpydir + "/" + imname)
+
 
             # START#### THIS IS FOR YOU TO HANDLE SIFER, upload_image.link is the string
 
